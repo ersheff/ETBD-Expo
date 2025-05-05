@@ -1,0 +1,60 @@
+<h1>Welcome to the Spring 2024 ETBD Expo!</h1>
+<hr />
+
+<div class="home-container">
+  <div class="text-col">
+    <p>Thanks for coming!</p>
+    <p>
+      You'll find projects by ETBD students across all three three floors of the
+      McVey Data Science building.
+    </p>
+    <p>
+      Feel free to use the navigation menu above to learn more about the projects in each room
+      and the talented students that made them.
+    </p>
+    <p>
+      If you have any trouble finding your way around, use the maps provided on
+      this page or ask anyone wearing a "Student Helper" button.
+    </p>
+  </div>
+
+  <div class="map-col">
+    <div
+      class="map-container"
+      onclick="popup(this)"
+      data-image="images/floor1.webp"
+    >
+      <img class="map" src="images/floor1.webp" alt="" />
+    </div>
+    <div
+      class="map-container"
+      onclick="popup(this)"
+      data-image="images/floor2.webp"
+    >
+      <img class="map" src="images/floor2.webp" alt="" />
+    </div>
+    <div
+      class="map-container"
+      onclick="popup(this)"
+      data-image="images/floor3.webp"
+    >
+      <img class="map" src="images/floor3.webp" alt="" />
+    </div>
+  </div>
+</div>
+
+<script>
+  function popup(e) {
+    const imgSrc = e.dataset.image;
+    const popup = document.createElement("dialog");
+    const popupImg = document.createElement("img");
+    popupImg.src = imgSrc;
+    popupImg.style.setProperty("width", "90%");
+    popup.appendChild(popupImg);
+    document.body.appendChild(popup);
+    popup.showModal();
+    popup.addEventListener("click", () => {
+      popup.remove();
+    });
+  }
+</script>

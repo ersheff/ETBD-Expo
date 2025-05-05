@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="script.js" defer></script>
+  <title>ETBD Expo - Spring 2024</title>
+</head>
+
+<body>
+  <nav hx-target="main" hx-swap="swap:0.2s settle:0.2s">
+    <a hx-get="pages/home.html">
+      <div class="logo-container" id="logo-nav"></div>
+    </a>
+    <select name="select" id="select-nav">
+      <option hx-get="pages/home.html" value="home">Home</option>
+      <option disabled>- 1st Floor -</option>
+      <option hx-get="pages/atrium1.html" value="atrium1">1st Floor Atrium</option>
+      <option hx-get="pages/126_128.html" value="126_128">Rooms 126 & 128</option>
+      <option hx-get="pages/132.html" value="132">Room 132</option>
+      <option hx-get="pages/160.html" value="160">Room 160</option>
+      <option hx-get="pages/xr.html" value="xr">XR Stage</option>
+      <option disabled>- 2nd Floor -</option>
+      <option hx-get="pages/atrium2.html" value="atrium2">2nd Floor Atrium</option>
+      <option hx-get="pages/202_203.html" value="202_203">Rooms 202 & 203</option>
+      <option hx-get="pages/213.html" value="213">Room 213</option>
+      <option hx-get="pages/263.html" value="263">Room 263</option>
+      <option disabled>- 3rd Floor -</option>
+      <option hx-get="pages/atrium3.html" value="atrium3">3rd Floor Atrium</option>
+      <option hx-get="pages/321.html" value="321">Room 321</option>
+    </select>
+  </nav>
+
+  <hr />
+
+  <main></main>
+</body>
+
+</html>
