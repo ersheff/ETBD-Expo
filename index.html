@@ -57,19 +57,18 @@
 
   <header>
     <h1>ETBD Expo</h1>
-    <img class="icon" src="expo-25-icon.webp" alt="">
+    <img class="icon" src="images/expo-25-icon.webp" alt="">
   </header>
 
   <nav>
     <select>
-      <option hx-get="pages/home.html" value="home">Home</option>
+      <option value="home">Home</option>
       <option disabled>- 1st Floor -</option>
-      <option hx-get="pages/aa.html">Artist's Alley (atrium)</option>
-      <option hx-get="pages/ims375.html">IMS375 Human Robot Interaction (atrium)</option>
-      <option hx-get="pages/ims415.html">IMS415 Advanced UX Research (166)</option>
+      <option value="aa">Artist's Alley (atrium)</option>
+      <option value="ims375">IMS375 Human Robot Interaction (atrium)</option>
+      <option value="ims415">IMS415 Advanced UX Research (166)</option>
       <option disabled>- 2nd Floor -</option>
-      <option hx-get="pages/ims452.html">IMS452 Senior Degree Project (atrium)</option>
-
+      <option value="ims452">IMS452 Senior Degree Project (atrium)</option>
       <option disabled>- 3rd Floor -</option>
     </select>
   </nav>
@@ -78,8 +77,12 @@
 
   <script>
     window.onload = () => {
-      document.querySelector('select').value = "home";
+      document.querySelector("select").value = "home";
     }
+    document.querySelector("select").addEventListener("change", (e) => {
+      const course = e.target.value;
+      console.log(`pages/${course}.html`);
+    });
   </script>
 
 </body>
