@@ -4,11 +4,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <script src="https://unpkg.com/htmx.org@2.0.4"
+    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous">
+  </script>
+  <style>
+    :root:not([data-theme]) {
+      background-color: #000;
+    }
+
+    body {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h1 {
+        font-size: 4rem;
+      }
+
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+        box-shadow: rgba(189, 127, 223, 0.4) 0px 8px 24px;
+      }
+    }
+
+    .htmx-swapping {
+      opacity: 0;
+      transition: 0.2s
+    }
+
+    .htmx-settling {
+      opacity: 1;
+      transition: 0.2s;
+    }
+  </style>
   <title>ETBD Expo - Spring 2025</title>
 </head>
 
-<body>
-  <h1>EXPO!</h1>
+<body hx-trigger="load" hx-get="pages/home.html" hx-target="main" hx-swap="swap:0.2s settle:0.2s">
+
+  <header>
+    <h1>ETBD Expo</h1>
+    <img class="icon" src="expo-25-icon.webp" alt="">
+  </header>
+
+  <nav>
+    <select>
+      <option hx-get="pages/home.html" value="home">Home</option>
+      <option disabled>- 1st Floor -</option>
+      <option hx-get="pages/aa.html">Artist's Alley (atrium)</option>
+      <option hx-get="pages/ims375.html">IMS375 Human Robot Interaction (atrium)</option>
+      <option hx-get="pages/ims415.html">IMS415 Advanced UX Research (166)</option>
+      <option disabled>- 2nd Floor -</option>
+      <option hx-get="pages/ims452.html">IMS452 Senior Degree Project (atrium)</option>
+
+      <option disabled>- 3rd Floor -</option>
+    </select>
+  </nav>
+
+  <main></main>
+
+  <script>
+    window.onload = () => {
+      document.querySelector('select').value = "home";
+    }
+  </script>
 
 </body>
 
