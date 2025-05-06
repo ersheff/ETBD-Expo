@@ -9,6 +9,13 @@
     integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous">
   </script>
   <style>
+    @font-face {
+      font-family: "Metropolis";
+      src: url("Metropolis-Bold.otf") format("opentype");
+      font-weight: bold;
+      font-style: normal;
+    }
+
     :root:not([data-theme]) {
       background-color: #000;
     }
@@ -19,31 +26,36 @@
       padding: 20px;
     }
 
+    iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
 
       h1 {
-        font-size: 4rem;
+        font-family: "Metropolis", sans-serif;
+        font-size: 4em;
+        text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.7);
       }
+    }
 
-      img {
-        width: 100px;
-        height: 100px;
-        border-radius: 8px;
-        box-shadow: rgba(189, 127, 223, 0.4) 0px 8px 24px;
-      }
+    .icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      box-shadow: rgba(189, 127, 223, 0.5) 0px 8px 24px;
     }
 
     .htmx-swapping {
       opacity: 0;
-      transition: 0.2s
+      transition: 0.1s
     }
 
     .htmx-settling {
       opacity: 1;
-      transition: 0.2s;
+      transition: 0.1s;
     }
 
     .spacer {
@@ -53,15 +65,14 @@
   <title>ETBD Expo - Spring 2025</title>
 </head>
 
-<body hx-trigger="load" hx-get="pages/home.html" hx-target="main" hx-swap="swap:0.2s settle:0.2s">
+<body hx-swap="swap:0.1s settle:0.1s">
 
   <header>
-    <h1>ETBD Expo</h1>
-    <img class="icon" src="images/expo-25-icon.webp" alt="">
+    <h1>ETBD EXPO</h1>
   </header>
 
   <nav>
-    <select>
+    <select id="course-menu">
       <option value="home">Home</option>
       <option disabled>- 1st Floor -</option>
       <option value="aa">Artist's Alley (atrium)</option>
@@ -70,10 +81,32 @@
       <option disabled>- 2nd Floor -</option>
       <option value="ims452">IMS452 Senior Degree Project (atrium)</option>
       <option disabled>- 3rd Floor -</option>
+      <option value="ims381">IMS381 Music for Games</option>
     </select>
   </nav>
 
-  <main></main>
+  <main>
+    <h2>Welcome to the Spring 2025 ETBD Expo!</h2>
+
+    <p>
+      There are projects by ETBD students across all three three floors of the
+      McVey Data Science building.
+    </p>
+    <p>
+      If you have any trouble finding your way around, use the maps provided on
+      this page or ask a student volunteer.
+    </p>
+
+    <p>
+      <img src="images/floor1.png" alt="">
+    </p>
+    <p>
+      <img src="images/floor2.png" alt="">
+    </p>
+    <p>
+      <img src="images/floor3.png" alt="">
+    </p>
+  </main>
 
   <script>
     window.onload = () => {
@@ -81,7 +114,8 @@
     }
     document.querySelector("select").addEventListener("change", (e) => {
       const course = e.target.value;
-      console.log(`pages/${course}.html`);
+      const page = `pages/${course}.html`;
+      htmx.ajax("GET", page, "main");
     });
   </script>
 
